@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f5ef6de9-e915-4c15-959e-ff2eed3462c2" name="h" url="http://localhost/talbatA16">
+        <fileTransfer port="0" mountedRoot="C:\AppServ\www\talbatA16" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

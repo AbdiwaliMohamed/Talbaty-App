@@ -1,0 +1,30 @@
+<form class="well" ng-submit="register()">
+    <div class="form-group">
+        <label>Service Type</label>
+        <select class="form-control" ng-model="type" required>
+            <option value="customers">Customer</option>
+            <option value="rest">Restraunt</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>{{type=='rest'?'Restraunt Name':'Name'}}</label>
+        <input type="text" class="form-control" ng-model="name" required>
+    </div>
+    <div class="form-group">
+        <label>{{type=='rest'?'Restraunt Telephone':'Telephone'}}</label>
+        <input type="tel" class="form-control" ng-model="tel" required>
+    </div>
+    <div class="form-group">
+        <label>{{type=='rest'?'Restraunt Address':'Address'}}</label>
+        <textarea class="form-control" ng-model="addr" required></textarea>
+    </div>
+    <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" ng-model="user" required>
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" ng-model="pass" required>
+    </div>
+    <button class="btn btn-success">Register</button>
+</form>

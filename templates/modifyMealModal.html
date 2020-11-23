@@ -1,0 +1,35 @@
+<div class="modal-header bg-primary">
+    <h5>Modify Meal</h5>
+</div>
+<div class="modal-body">
+    <form ng-submit="updateMeal()">
+        <div class="form-group">
+            <label>Meal Name</label>
+            <input type="text" class="form-control" ng-model="selectedMeal.name" required>
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input type="number" class="form-control" ng-model="selectedMeal.price" required>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control" ng-model="selectedMeal.descr" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Type</label>
+            <select class="form-control" ng-model="selectedMeal.type" required>
+                <option value="Sandwiches">Sandwiches</option>
+                <option value="Pizza">Pizza</option>
+                <option value="Meals">Meals</option>
+                <option value="Grills">Grills</option>
+                <option value="Drinks">Drinks</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Photo</label>
+            <input mds-file type="file" file="selectedMeal.img" base64="y">
+            <img src="{{y?y:selectedMeal.img}}" style="width:400px;height: 250px;display: block;margin: auto">
+        </div>
+        <button class="btn btn-success">Update</button>
+    </form>
+</div>

@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
+        <div class="list-group">
+            <div class="list-group-item active">Restraunts</div>
+            <a href="#" ng-click="$event.preventDefault();getMeals(rest.id)" class="list-group-item" ng-repeat="rest in rests">{{rest.name}}</a>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-9 col-lg-10" ng-init="selectedType='Sandwiches'">
+        <ul class="nav nav-tabs">
+            <li class="{{selectedType=='Sandwiches'?'active':''}}"><a href="#" ng-click="$event.preventDefault();selectedType='Sandwiches'">Sandwiches</a></li>
+            <li class="{{selectedType=='Pizza'?'active':''}}"><a href="#" ng-click="$event.preventDefault();selectedType='Pizza'">Pizza</a></li>
+            <li class="{{selectedType=='Meals'?'active':''}}"><a href="#" ng-click="$event.preventDefault();selectedType='Meals'">Meals</a></li>
+            <li class="{{selectedType=='Grills'?'active':''}}"><a href="#" ng-click="$event.preventDefault();selectedType='Grills'">Grills</a></li>
+            <li class="{{selectedType=='Drinks'?'active':''}}"><a href="#" ng-click="$event.preventDefault();selectedType='Drinks'">Drinks</a></li>
+            <li class="pull-right"><button class="btn btn-success btn-sm" ng-click="showBasket()"><span class="fa fa-basket">{{bascket.length}}</span> </button> </li>
+        </ul>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 thumbnail" ng-repeat="meal in meals|filter:{type:selectedType}">
+                <img src="{{imgUrl+meal.img}}" style="width: 100%;height: 250px">
+                <div class="caption bg-info">
+                    {{meal.name}} <span class="pull-right">{{meal.price|currency}}</span>
+                    <button class="btn btn-success btn-block" ng-click="addToBascket(meal.name,meal.price)">Add to Bascket</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

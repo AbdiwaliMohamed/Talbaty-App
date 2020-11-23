@@ -1,0 +1,89 @@
+<ul class="nav nav-tabs">
+    <li><a href="#" ng-click="$event.preventDefault();x=false">Meals</a></li>
+    <li><a href="#" ng-click="$event.preventDefault();x=true;getOrders()">Orders</a></li>
+</ul>
+<div ng-if="!x">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Image</th>
+            <th>Delete</th>
+            <th>Modify</th>
+        </tr>
+        <tr ng-repeat="meal in meals">
+            <th>{{$index+1}}</th>
+            <th>{{meal.name}}</th>
+            <th>{{meal.price}}</th>
+            <th>{{meal.descr}}</th>
+            <th>{{meal.type}}</th>
+            <th><img src="{{meal.img}}" style="width:128px;height:128px"> </th>
+            <th><button class="btn btn-danger" ng-click="deleteMeal(meal.id,$index)">Delete</button> </th>
+            <th><button class="btn btn-success" ng-click="preModifyMeal(meal)">Modify</button> </th>
+        </tr>
+    </table>
+    <form ng-submit="insertMeal()">
+        <div class="form-group">
+            <label>Meal Name</label>
+            <input type="text" class="form-control" ng-model="mealData.name" required>
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input type="number" class="form-control" ng-model="mealData.price" required>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control" ng-model="mealData.descr" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Type</label>
+            <select class="form-control" ng-model="mealData.type" required>
+                <option value="Sandwiches">Sandwiches</option>
+                <option value="Pizza">Pizza</option>
+                <option value="Meals">Meals</option>
+                <option value="Grills">Grills</option>
+                <option value="Drinks">Drinks</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Photo</label>
+            <input mds-file type="file" file="mealData.img" base64="y" required>
+            <img src="{{y}}" style="width:400px;height: 250px;display: block;margin: auto">
+        </div>
+        <button class="btn btn-success">Insert</button>
+    </form>
+</div>
+<div ng-if="x">
+   <table class="table table-bordered table-hover">
+       <tr>
+           <th>Number</th>
+           <th>Cust ID</th>
+           <th>Address</th>
+           <th>Meals</th>
+           <th>Order Time</th>
+           <th>Ready Time</th>
+       </tr>
+       <tr ng-repeat="order in orders">
+           <td>{{$index+1}}</td>
+           <td>{{order.cust_id}}</td>
+           <td>{{order.addr}}</td>
+           <td>
+               <table class="table">
+                   <tr ng-repeat="meal in order.meals">
+                       <td>{{meal.name}}</td>
+                       <td>{{meal.price|currency}}</td>
+                       <td>{{meal.qty}}</td>
+                   </tr>
+               </table>
+           </td>
+           <td>{{order.order_time}}</td>
+           <td>
+               <span ng-show="order.ready_time">{{order.ready_time}}</span>
+               <button ng-show="!order.ready_time" class="btn btn-success">Ready</button>
+           </td>
+       </tr>
+   </table>
+</div>
